@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: server1
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/yjmyzz/spring-cloud-config-repository
+  #          username: *****
+  #          password: *****
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://yjmyzz:123456@server1:8100/eureka,http://yjmyzz:123456@server2:8200/eureka
+
+management:
+  security:
+    enabled: false
